@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Studio File Reader</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Extra stijl voor de grotere pagina-opmaak */
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Studio File Reader</h1>
+        <p>Selecteer of sleep een geëxporteerd AI Studio-bestand om het te converteren.</p>
+        <div class="upload-area" id="uploadArea">
+            <input type="file" id="fileInput" hidden accept=".json">
+            <button id="uploadButton">Selecteer Bestand</button>
+            <p id="fileName">Geen bestand geselecteerd</p>
+        </div>
+        <p id="successMessage" class="hidden"><strong>Succes!</strong> De download is gestart.</p>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
