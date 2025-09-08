@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Kernlogica ---
     const handleFile = (file) => {
-        fileNameDisplay.textContent = `Bezig met verwerken: ${file.name}`;
+        fileNameDisplay.textContent = `Processing: ${file.name}`;
         successMessage.classList.add('hidden');
         
         const reader = new FileReader();
@@ -53,18 +53,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     const originalFileName = file.name.includes('.') ? file.name.split('.').slice(0, -1).join('.') : file.name;
                     const markdownContent = convertToMarkdown(data, file.name);
                     triggerDownload(markdownContent, originalFileName);
-                    fileNameDisplay.textContent = `${file.name} verwerkt.`;
+                    fileNameDisplay.textContent = `${file.name} processed.`;
                     successMessage.classList.remove('hidden');
                 } else {
-                    fileNameDisplay.textContent = 'Fout: Geen geldig AI Studio-bestand.';
+                    fileNameDisplay.textContent = 'Error: Not a valid AI Studio file.';
                 }
             } catch (error) {
-                fileNameDisplay.textContent = 'Fout: Ongeldig JSON-formaat.';
+                fileNameDisplay.textContent = 'Error: Invalid JSON format.';
                 console.error('JSON Parse Error:', error);
             }
         };
         reader.onerror = () => {
-            fileNameDisplay.textContent = 'Fout bij het lezen van het bestand.';
+            fileNameDisplay.textContent = 'Error reading the file.';
         };
         reader.readAsText(file);
     };
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 md += `### 👤 User\n\n${text}\n\n---\n\n`;
             } else if (role === 'model') {
                 if (isThought) {
-                    md += `### 🧠 Model (Thought)\n\n*Gedachtegang:*\n\`\`\`\n${text}\n\`\`\`\n\n`;
+                    md += `### 🧠 Model (Thought)\n\n*Thought process:*\n\`\`\`\n${text}\n\`\`\`\n\n`;
                 } else {
                     md += `### ▶️ Model (Answer)\n\n${text}\n\n---\n\n`;
                 }
