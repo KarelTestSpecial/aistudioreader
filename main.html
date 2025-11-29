@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,22 +16,84 @@
             align-items: center;
             box-sizing: border-box;
         }
+
         .container {
             max-width: 400px;
         }
+
+        .settings-container {
+            margin-bottom: 20px;
+            text-align: left;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .setting-item {
+            margin-bottom: 10px;
+        }
+
+        .setting-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .setting-item label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .setting-item select {
+            width: 100%;
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .setting-item input[type="checkbox"] {
+            margin-right: 5px;
+        }
     </style>
+
 </head>
+
 <body>
     <div class="container">
         <h1>AI Studio File Reader</h1>
         <p>Select or drag and drop an exported AI Studio file to convert it.</p>
-        <div class="upload-area" id="uploadArea">
-            <input type="file" id="fileInput" hidden>
-            <button id="uploadButton">Select File</button>
+        <div class="settings-container">
+            <div class="setting-item"><label for="roleHeaderLevel">Role Header Level:</label><select
+                    id="roleHeaderLevel">
+                    <option value="1">H1</option>
+                    <option value="2">H2</option>
+                    <option value="3" selected>H3</option>
+                    <option value="4">H4</option>
+                    <option value="5">H5</option>
+                    <option value="6">H6</option>
+                </select></div>
+            <div class="setting-item"><label for="topContentHeaderLevel">Adapt Content Level Headers:</label><select
+                    id="topContentHeaderLevel">
+                    <option value="0" selected>0 (No change)</option>
+                    <option value="-1">-1</option>
+                    <option value="-2">-2</option>
+                    <option value="-3">-3</option>
+                    <option value="1">+1</option>
+                    <option value="2">+2</option>
+                    <option value="3">+3</option>
+                </select></div>
+            <div class="setting-item"><label for="wrapInCodeBlock"><input type="checkbox" id="wrapInCodeBlock">Wrap
+                    content in code blocks </label></div>
+        </div>
+        <div class="upload-area" id="uploadArea"><input type="file" id="fileInput" hidden><button
+                id="uploadButton">Select File</button>
             <p id="fileName">No file selected</p>
         </div>
-        <p id="successMessage" class="hidden"><strong>Success!</strong> The download has started. Check your Downloads folder.</p>
+        <p id="successMessage" class="hidden"><strong>Success !</strong>The download has started. Check your Downloads
+            folder.</p>
     </div>
     <script src="main.js"></script>
 </body>
+
 </html>
