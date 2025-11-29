@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Google AI Studio - File Reader",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "description": "Converts Google AI Studio File into an easy-to-read text file",
   "background": {
     "service_worker": "background-service.js"

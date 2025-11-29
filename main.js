@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 text = `\`\`\`text\n${text}\n\`\`\``;
             } else {
                 // Shift headers if not wrapped in code block
-                const shiftAmount = topContentHeaderLevel; // Value is now relative (e.g., -1, 0, 1)
+                const shiftAmount = -topContentHeaderLevel; // Value is now relative (e.g., -1, 0, 1)
                 if (shiftAmount !== 0) {
                     text = text.split('\n').map(line => {
                         const headerMatch = line.match(/^(\#{1,6})\s+(.*)/);
