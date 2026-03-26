@@ -2,12 +2,14 @@
 const roleHeaderLevelSelect = { value: '3' };
 const topContentHeaderLevelSelect = { value: '0' };
 const wrapInCodeBlockCheckbox = { checked: false };
+const includeThoughtProcessCheckbox = { checked: true };
 
 // Mock convertToMarkdown function (copied from main.js with minor adjustments for node)
 const convertToMarkdown = (data, originalName) => {
     const roleHeaderLevel = parseInt(roleHeaderLevelSelect.value, 10);
     const topContentHeaderLevel = parseInt(topContentHeaderLevelSelect.value, 10);
     const wrapInCodeBlock = wrapInCodeBlockCheckbox.checked;
+    const includeThoughtProcess = includeThoughtProcessCheckbox.checked;
     const roleHeaderHashes = '#'.repeat(roleHeaderLevel);
 
     let md = `# Conversation Log from ${originalName}\n\n`;
@@ -18,6 +20,7 @@ const convertToMarkdown = (data, originalName) => {
         const isThought = chunk.isThought || false;
 
         if (!text) return;
+        if (isThought && !includeThoughtProcess) return;
 
         // Apply content transformations
         if (wrapInCodeBlock) {
@@ -108,3 +111,26 @@ roleHeaderLevelSelect.value = '3';
 topContentHeaderLevelSelect.value = '1'; // Shift +1
 wrapInCodeBlockCheckbox.checked = false;
 console.log(convertToMarkdown(overflowData, 'Test5'));
+
+// Test 6: Thought Process Omission
+console.log('\n--- Test 6: Thought Process Omission ---');
+const thoughtData = {
+    chunkedPrompt: {
+        chunks: [
+            { role: 'user', text: 'Ask a hard question' },
+            { role: 'model', text: 'Thinking step 1...\nThinking step 2...', isThought: true },
+            { role: 'model', text: 'The answer is 42.' }
+        ]
+    }
+};
+roleHeaderLevelSelect.value = '3';
+topContentHeaderLevelSelect.value = '0';
+wrapInCodeBlockCheckbox.checked = false;
+
+console.log('--- Test 6a: With Thought Process (Default) ---');
+includeThoughtProcessCheckbox.checked = true;
+console.log(convertToMarkdown(thoughtData, 'Test6a'));
+
+console.log('--- Test 6b: Without Thought Process ---');
+includeThoughtProcessCheckbox.checked = false;
+console.log(convertToMarkdown(thoughtData, 'Test6b'));
