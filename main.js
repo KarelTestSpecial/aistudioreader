@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const roleHeaderLevelSelect = document.getElementById('roleHeaderLevel');
     const topContentHeaderLevelSelect = document.getElementById('topContentHeaderLevel');
     const wrapInCodeBlockCheckbox = document.getElementById('wrapInCodeBlock');
+    const includeThoughtProcessCheckbox = document.getElementById('includeThoughtProcess');
 
     // --- Event Listeners ---
 
@@ -19,7 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const settings = {
             roleHeaderLevel: roleHeaderLevelSelect.value,
             topContentHeaderLevel: topContentHeaderLevelSelect.value,
-            wrapInCodeBlock: wrapInCodeBlockCheckbox.checked
+            wrapInCodeBlock: wrapInCodeBlockCheckbox.checked,
+            includeThoughtProcess: includeThoughtProcessCheckbox.checked
         };
         localStorage.setItem('aiStudioReaderSettings', JSON.stringify(settings));
     };
@@ -31,12 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
             roleHeaderLevelSelect.value = settings.roleHeaderLevel || '3';
             topContentHeaderLevelSelect.value = settings.topContentHeaderLevel || '0';
             wrapInCodeBlockCheckbox.checked = settings.wrapInCodeBlock || false;
+            includeThoughtProcessCheckbox.checked = settings.includeThoughtProcess !== undefined ? settings.includeThoughtProcess : true;
         }
     };
 
     roleHeaderLevelSelect.addEventListener('change', saveSettings);
     topContentHeaderLevelSelect.addEventListener('change', saveSettings);
     wrapInCodeBlockCheckbox.addEventListener('change', saveSettings);
+    includeThoughtProcessCheckbox.addEventListener('change', saveSettings);
 
     // Initialize settings
     loadSettings();
@@ -106,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const roleHeaderLevel = parseInt(roleHeaderLevelSelect.value, 10);
         const topContentHeaderLevel = parseInt(topContentHeaderLevelSelect.value, 10);
         const wrapInCodeBlock = wrapInCodeBlockCheckbox.checked;
+        const includeThoughtProcess = includeThoughtProcessCheckbox.checked;
         const roleHeaderHashes = '#'.repeat(roleHeaderLevel);
 
         let md = `# Conversation Log from ${originalName}\n\n`;
@@ -116,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const isThought = chunk.isThought || false;
 
             if (!text) return;
+            if (isThought && !includeThoughtProcess) return;
 
             // Apply content transformations
             if (wrapInCodeBlock) {
