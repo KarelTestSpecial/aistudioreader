@@ -1,12 +1,3 @@
-# Chrome Web Store listing — Google AI Studio - File Reader
-
-## Name
-Google AI Studio - File Reader
-
-## Short description
-Converts a Google AI Studio file into an easy-to-read text file.
-
-## Detailed description
 Google AI Studio - File Reader is an essential tool that converts Google AI Studio files into an easy-to-read text format directly in your browser.
 
 MORE FROM THIS DEVELOPER
