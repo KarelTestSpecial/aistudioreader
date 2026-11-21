@@ -9,6 +9,7 @@ Google AI Studio conversations are stored in the 'Google AI Studio' folder on yo
 - Local Processing: All file processing is done entirely on your own computer. Your files are never uploaded to an external server.
 - Simple Interface: A clean and simple interface allows you to select or drag and drop a file for conversion.
 - Markdown Conversion: The extension converts the JSON data into a well-organized Markdown file, with a clear separation between user input and model responses.
+- Compare Mode Support: Files exported from AI Studio's Compare Mode (which contain multiple runs under comparisonPrompt) are also supported. All runs are converted into a single Markdown file, with a separate section per run that includes the model name — no need to split the file manually.
 - Customizable Output: Configure header levels for roles (User/Model) and content, and optionally wrap content in code blocks. Your settings are automatically saved.
 - Automatic Download: After conversion, the .md file is automatically downloaded to your computer.
 
@@ -20,7 +21,7 @@ How to use
 4. Select your Google AI Studio file from the 'Google AI Studio' folder on your Google Drive or wherever you have placed the file:
    - Click the "Select File" button and choose the Google AI Studio file. AI Studio conversations are stored in the 'Google AI Studio' folder on your Google Drive. This file has no extension but is normally indicated with a blue icon and has the title of your conversation in Google AI Studio as its name.
    - If you cannot select the file via the file picker (e.g., because you are working with different accounts), download the file first: go to the 'Google AI Studio' folder on your Google Drive and right-click on the file and choose 'Download'. The file will now be saved in your local 'Downloads' folder. You can now select the file with the file picker of the Google AI Studio - File Reader in your local 'Downloads' folder, or you can drag the file from the local 'Downloads' folder (opened in your local File Manager) to the designated area on the Google AI Studio - File Reader tab in your browser.
-5. Wait for the conversion: The extension processes the file immediately.
+5. Wait for the conversion: The extension processes the file immediately. Both regular conversation exports and Compare Mode exports are supported.
 6. Download: The download of the converted .md file starts automatically.
 
 Privacy
